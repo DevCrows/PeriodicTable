@@ -5,11 +5,17 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import com.fjbg.periodictable.ui.theme.PeriodicTableTheme
+import com.fjbg.periodictable.ui.view.MainView
+import com.fjbg.periodictable.ui.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+	
+	val viewModel: MainViewModel by viewModels()
+	
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		
@@ -19,7 +25,7 @@ class MainActivity : ComponentActivity() {
 		
 		setContent {
 			PeriodicTableTheme {
-			
+				MainView(viewModel)
 			}
 		}
 	}

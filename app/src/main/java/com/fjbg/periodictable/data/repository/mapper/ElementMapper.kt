@@ -16,6 +16,9 @@ fun elementEntityToModel(entity: ElementEntity): Element =
 		name = entity.name,
 	)
 
+fun elementEntitiesToModels(entities: List<ElementEntity>): List<Element> =
+	entities.map(::elementEntityToModel)
+
 fun elementResponseToEntity(response: ElementResponse): ElementEntity =
 	ElementEntity(
 		id = response.id,

@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
 interface ElementDao {
 	
 	@Query("SELECT * FROM element")
-	fun getAllElements(): Flow<List<ElementEntity>>
+	fun getElements(): Flow<List<ElementEntity>>
 	
 	@Query("SELECT * FROM element WHERE id=:elementId")
 	fun getElementById(elementId: Int): ElementEntity
