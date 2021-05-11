@@ -6,6 +6,7 @@ import android.view.View
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.compose.foundation.ExperimentalFoundationApi
 import com.fjbg.periodictable.ui.theme.PeriodicTableTheme
 import com.fjbg.periodictable.ui.view.MainView
 import com.fjbg.periodictable.ui.viewmodel.MainViewModel
@@ -16,6 +17,7 @@ class MainActivity : ComponentActivity() {
 	
 	val viewModel: MainViewModel by viewModels()
 	
+	@ExperimentalFoundationApi
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		
