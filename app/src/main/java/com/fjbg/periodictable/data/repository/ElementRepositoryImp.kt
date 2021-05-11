@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class ElementRepositoryImp @Inject constructor(
-	val database: PeriodicTableDatabase
+	private val database: PeriodicTableDatabase
 ) : ElementRepository {
 	override suspend fun getElements(): Flow<List<Element>> =
 		database.elementDao().getElements().map {
