@@ -3,18 +3,13 @@ package com.fjbg.periodictable.ui.view
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.GridCells
 import androidx.compose.foundation.lazy.LazyVerticalGrid
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -31,7 +26,10 @@ fun MainView(
 		Modifier
 			.fillMaxSize()
 			.padding(
-				top = 48.dp, bottom = 24.dp, start = 24.dp, end = 24.dp
+				top = 48.dp,
+				bottom = 24.dp,
+				start = 24.dp,
+				end = 24.dp
 			)
 	) {
 		viewModel.elementList.observeAsState().value.let { list ->
@@ -60,19 +58,50 @@ fun ElementTable(list: List<Element>) {
 						
 						}
 				) {
-					Text(
-						textAlign = TextAlign.Center,
-						color = Color.White,
-						text = list[it].symbol ?: "",
-						fontSize = 16.sp,
-						modifier = Modifier
-							.fillMaxSize()
-							.clip(RoundedCornerShape(4.dp))
-							.background(Color.DarkGray)
-							.padding(top = 2.dp, bottom = 2.dp, start = 4.dp, end = 4.dp)
-					)
+					if (list[it].name != null) {
+						ElementContent(element = list[it])
+					} else {
+						EmptyElement()
+					}
 				}
 			}
 		)
 	}
+}
+
+@Composable
+fun ElementContent(element: Element) {
+	Column(
+		modifier = Modifier
+			.background(Color.DarkGray)
+			.fillMaxSize(20f)
+	) {
+		Text(
+			textAlign = TextAlign.Center,
+			color = Color.White,
+			text = element.symbol ?: "",
+			fontSize = 18.sp,
+			modifier = Modifier
+				.fillMaxWidth()
+				.padding(top = 1.dp, bottom = 5.dp, start = 4.dp, end = 4.dp)
+		)
+		Text(
+			text = element.name ?: "",
+			fontSize = 10.sp,
+			color = Color.White,
+			modifier = Modifier
+				.fillMaxWidth()
+				.padding(top = 1.dp, bottom = 1.dp, start = 2.dp, end = 2.dp)
+		)
+	}
+}
+
+@Composable
+fun EmptyElement() {
+	Text(
+		text = "",
+		modifier = Modifier
+			.fillMaxSize()
+			.background(Color.Transparent)
+	)
 }

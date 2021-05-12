@@ -18,6 +18,9 @@ class ElementRepositoryImp @Inject constructor(
 ) : ElementRepository {
 	
 	override suspend fun getElements(): Flow<List<Element>> {
+		
+		database.elementDao().deleteElements()
+		
 		val elementResponse = getElementsRemote()
 		saveElements(elementResponse)
 		return database.elementDao().getElements().map {

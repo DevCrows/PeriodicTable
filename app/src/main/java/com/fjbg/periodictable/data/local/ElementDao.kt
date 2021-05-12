@@ -20,4 +20,7 @@ interface ElementDao {
 	
 	@Insert(onConflict = OnConflictStrategy.REPLACE)
 	fun insertElement(element: List<ElementEntity>)
+	
+	@Query("DELETE FROM element")
+	suspend fun deleteElements()
 }
