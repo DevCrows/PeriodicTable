@@ -63,7 +63,7 @@ fun ElementTable(list: List<Element>) {
 					Text(
 						textAlign = TextAlign.Center,
 						color = Color.White,
-						text = "He",
+						text = list[it].symbol ?: "",
 						fontSize = 16.sp,
 						modifier = Modifier
 							.fillMaxSize()
