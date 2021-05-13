@@ -11,7 +11,6 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-
 @HiltViewModel
 class MainViewModel @Inject constructor(
 	private val repository: ElementRepositoryImp
@@ -22,17 +21,8 @@ class MainViewModel @Inject constructor(
 	
 	init {
 		viewModelScope.launch {
-			repository.getElements().collect {
-				val fakeList = arrayListOf<Element>()
-				for (i in 1..162) {
-					fakeList.add(
-						Element(
-							id = i,
-							name = "He"
-						)
-					)
-				}
-				_elementList.value = fakeList
+			repository.getElements().collect { list ->
+				_elementList.value = list
 			}
 		}
 	}

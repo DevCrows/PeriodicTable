@@ -1,6 +1,10 @@
 package com.fjbg.periodictable.data.remote
 
 data class ElementResponse(
-	val id: Int,
-	val name: String,
+	val name: String?,
+	val symbol: String?
+)
+
+data class ElementWrapper(
+	val elements: List<ElementResponse>
 )

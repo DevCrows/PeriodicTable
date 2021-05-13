@@ -4,23 +4,23 @@ import com.fjbg.periodictable.data.local.ElementEntity
 import com.fjbg.periodictable.data.remote.ElementResponse
 import com.fjbg.periodictable.data.repository.Element
 
-fun elementModelToEntity(model: Element): ElementEntity =
-	ElementEntity(
-		id = model.id,
-		name = model.name,
-	)
-
 fun elementEntityToModel(entity: ElementEntity): Element =
 	Element(
 		id = entity.id,
 		name = entity.name,
+		symbol = entity.symbol,
+	)
+
+fun elementResponseToEntity(response: ElementResponse): ElementEntity =
+	ElementEntity(
+		id = 0,
+		name = response.name,
+		symbol = response.symbol,
 	)
 
 fun elementEntitiesToModels(entities: List<ElementEntity>): List<Element> =
 	entities.map(::elementEntityToModel)
 
-fun elementResponseToEntity(response: ElementResponse): ElementEntity =
-	ElementEntity(
-		id = response.id,
-		name = response.name,
-	)
+fun elementResponseToEntities(response: List<ElementResponse>): List<ElementEntity> =
+	response.map(::elementResponseToEntity)
+
