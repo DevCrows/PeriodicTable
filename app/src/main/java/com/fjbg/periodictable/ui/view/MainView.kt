@@ -1,5 +1,6 @@
 package com.fjbg.periodictable.ui.view
 
+import android.util.Log
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -22,6 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.fjbg.periodictable.data.repository.Element
 import com.fjbg.periodictable.ui.viewmodel.MainViewModel
+import com.fjbg.periodictable.utils.TAG
 
 @ExperimentalFoundationApi
 @Composable
@@ -41,6 +43,7 @@ fun MainView(
 		viewModel.elementList.observeAsState().value.let { list ->
 			list?.let {
 				ElementTable(it)
+				
 			}
 		}
 		
@@ -62,11 +65,13 @@ fun ElementTable(list: List<Element>) {
 					Column(
 						modifier = Modifier.padding(1.dp)
 					) {
+						for (i in 1..list.size) {
+							Log.d(TAG, "ElementTable: $i")
+						}
 						if (list[it].name != null) {
 							ElementContent(element = list[it])
 						}
 					}
-					Text(text = "text", color = Color.White, fontSize = 20.sp)
 				}
 			)
 		}
