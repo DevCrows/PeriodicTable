@@ -112,7 +112,7 @@ fun ElementContent(element: Element) {
 			modifier = Modifier
 				.background(Color.Black)
 				.fillMaxWidth()
-				.padding(top = 1.dp, bottom = 1.dp, start = 2.dp, end = 2.dp)
+				.padding(top = 2.dp, bottom = 2.dp, start = 2.dp, end = 2.dp)
 		)
 	}
 }
